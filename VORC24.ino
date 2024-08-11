@@ -21,13 +21,6 @@ int speed ;
 // Các biến check trạng thái
 bool checkCollector, checkReverse, ShootBlack, ShootWhite, OpenWhite, OpenBlack, checkSpin, offCollector, offShooter ;
 
-uint16_t getColorTemp(){
-  uint16_t r, g, b, c, colorTemp ;
-  tcs.getRawData(&r, &g, &b, &c) ; // Lấy dữ liệu thô về 3 màu: Red, Blue, Green
-  colorTemp = tcs.calculateColorTemperature(r, g, b) ; // Tính toán nhiệt độ màu dựa trên dữ liệu đã lấy ở trên
-  return colorTemp ; // Trả về giá trị nhiệt độ màu 
-}
-
 void Move(int a, int b, int c, int d){ // Điều khiển động cơ di chuyển 
   pwm.setPWM(8, 0, a); // Truyền các giá trị xung pwm cho động cơ
   pwm.setPWM(9, 0, b);
