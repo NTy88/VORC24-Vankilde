@@ -89,9 +89,7 @@ void loop() {
 }
 
 void PS2Control(){
-  //Serial.print("ok");
   // Setup speed
-  
   if(ps2x.ButtonPressed(PSB_L2)) speed = MAX_SPEED ; 
   if(ps2x.ButtonPressed(PSB_L1)) speed = NOR_SPEED ;
  
@@ -187,16 +185,11 @@ void PS2Control(){
     }else pwm.setPWM(6, 0, 0) ; // Stop Spin 
   } 
 
+  // Phân loại bóng 
   uint16_t R, G, B, C, colorTemp;
   tcs.getRawData(&R, &G, &B, &C); // Lấy dữ liệu thô về 3 màu: Red, Blue, Green
   colorTemp = tcs.calculateColorTemperature(R, G, B);  // Tính toán nhiệt độ màu dựa trên dữ liệu đã lấy ở trên
-   Serial.print("Color Temp: "); Serial.print(colorTemp, DEC); Serial.print(" K - ");
- // Serial.print("Lux: "); Serial.print(lux, DEC); Serial.print(" - ");
-  Serial.print("R: "); Serial.print(R, DEC); Serial.print(" ");
-  Serial.print("G: "); Serial.print(G, DEC); Serial.print(" ");
-  Serial.print("B: "); Serial.print(B, DEC); Serial.print(" ");
-  Serial.print("C: "); Serial.print(C, DEC); Serial.print(" ");
-  Serial.println(" ");
+
   if(colorTemp > 10000 && colorTemp < 11000 && R + G + B < 150) pwm.setPWM(5, 0, 150); // Kiểm tra có phải bóng đen hay không
   else if(colorTemp < 12000 && colorTemp > 11000 && R + G + B > 300) pwm.setPWM(5, 0, 495); // Kiểm tra bóng trắng
   else pwm.setPWM(5, 0, 0) ; // không có bóng -> động cơ dừng
