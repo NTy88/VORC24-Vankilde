@@ -44,13 +44,13 @@ void StopCollector(){ // Dừng động cơ, tắt bộ thu
 }
 
 void ShootWhiteBall(){ // Bắn bóng trắng
-  pwm.setPWM(14, 0, 4095); // Động cơ hoạt động ở mức tối đa
-  pwm.setPWM(15, 0, 0) ;
+  pwm.setPWM(14, 0, 0); 
+  pwm.setPWM(15, 0, 4095) ; // Động cơ hoạt động ở mức tối đa
 }
 
 void ShootBlackBall(){ // Bắn bóng đen
-  pwm.setPWM(14, 0, 2048) ; // Động cơ hoạt động ở mức 50%
-  pwm.setPWM(15, 0, 0) ;
+  pwm.setPWM(14, 0, 0) ;
+  pwm.setPWM(15, 0, 2048) ; // Động cơ hoạt động ở mức 50%
 }
 
 void StopShoot(){ // Tắt bộ bắn bóng
